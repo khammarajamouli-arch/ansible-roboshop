@@ -7,8 +7,8 @@
     zone_id: "Z063603412VOFRSAXAFPR" # replace with your ID
     domain_name: "rajamouli.online"
     # we can pass instances through command line using -e
-    instances: 
-    - mongodb
+    # instances: 
+    # - mongodb
     # - redis
     # - mysql
     # - rabbitmq
@@ -42,7 +42,7 @@
     amazon.aws.route53:
       state: present
       zone: "{{ domain_name }}"
-      record: "{{ item.item }}.{{ domain_name }}" # mongodb.daws86s.fun
+      record: "{{ item.item }}.{{ domain_name }}" # mongodb.rajamouli.online
       type: A
       ttl: 1
       value: "{{ item.instances[0].private_ip_address }}"
@@ -54,7 +54,7 @@
     amazon.aws.route53:
       state: present
       zone: "{{ domain_name }}"
-      record: "{{ domain_name }}" # daws86s.fun
+      record: "{{ domain_name }}" # rajamouli.online
       type: A
       ttl: 1
       value: "{{ item.instances[0].public_ip_address }}"

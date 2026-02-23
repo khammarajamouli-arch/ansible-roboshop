@@ -40,3 +40,26 @@
     ansible.builtin.get_url:
       url: https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip
       dest: /tmp/user.zip
+
+  - name: extract user application
+    ansible.builtin.unarchive:
+      src: /tmp/user.zip
+      dest: /app
+      remote_src: yes
+
+  - name: install dependencies
+    community.general.npm:
+      path: /app
+
+  - name: copy user service
+    ansible.builtin.copy:
+      src: user.service
+      dest: /etc/systemd/system/user.service
+
+  - name: daemon reload enable and start
+    ansible.builtin.systemd_service:
+      name: user
+      enabled: true
+      state: started
+      daemon_reload: true
+  

@@ -8,7 +8,7 @@
     domain_name: "rajamouli.online"
     # we can pass instances through command line using -e
     instances: 
-    # - mongodb
+      - mongodb
     # - redis
     # - mysql
     # - rabbitmq
